@@ -1,0 +1,6 @@
+{
+  "name": "smx.ai",
+  "description": "An ultra-premium cinematic 3D AI assistant named smx.ai featuring a luxury floating robot head that follows your cursor, reacts to your keystrokes, and serves as your guide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
