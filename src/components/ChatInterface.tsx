@@ -621,8 +621,10 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                 transition={{ duration: 0.6 }}
                 className="space-y-6 w-full flex flex-col items-center"
               >
-                <div className="relative inline-flex items-center justify-center p-4 rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
-                  <Sparkles className="w-8 h-8 text-brand-cyan animate-pulse" />
+                <div className={`relative inline-flex items-center justify-center p-4 rounded-3xl border shadow-2xl ${
+                  theme === "light" ? "bg-white border-slate-200 shadow-slate-200/50" : "bg-white/5 border-white/10"
+                }`}>
+                  <SmxLogoMark theme={theme} className="w-8 h-8" />
                 </div>
                 
                 <div className="space-y-2">
@@ -657,7 +659,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             /* CONVERSATION STREAM FEED */
             <div className="max-w-3xl mx-auto space-y-2 select-text selection:bg-brand-cyan/30">
               {activeThread.messages.map((message) => (
-                <AetherMessageBubble key={message.id} message={message} />
+                <AetherMessageBubble key={message.id} message={message} theme={theme} />
               ))}
               <div ref={messagesEndRef} />
             </div>

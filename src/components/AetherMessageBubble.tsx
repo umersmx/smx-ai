@@ -5,9 +5,10 @@ import { SmxLogoMark } from "./SmxLogoMark";
 
 interface AetherMessageBubbleProps {
   message: Message;
+  theme?: "dark" | "light";
 }
 
-export const AetherMessageBubble: React.FC<AetherMessageBubbleProps> = ({ message }) => {
+export const AetherMessageBubble: React.FC<AetherMessageBubbleProps> = ({ message, theme = "dark" }) => {
   const isUser = message.role === "user";
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -143,8 +144,10 @@ export const AetherMessageBubble: React.FC<AetherMessageBubbleProps> = ({ messag
     >
       {/* Assistant Avatar Icon */}
         {!isUser && (
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-black/80 shadow-inner p-1.5">
-            <SmxLogoMark className="w-full h-full" />
+          <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border shadow-inner p-1.5 ${
+            theme === "light" ? "bg-slate-100 border-slate-200" : "bg-black/80 border-white/15"
+          }`}>
+            <SmxLogoMark theme={theme} className="w-full h-full" />
           </div>
         )}
 
