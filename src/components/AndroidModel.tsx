@@ -107,21 +107,23 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
           if (child.material) {
             const materials = Array.isArray(child.material) ? child.material : [child.material];
             materials.forEach((mat) => {
-              // Boost sleek matte ceramic & dark metallic finish
               if ("roughness" in mat) {
-                (mat as any).roughness = 0.42;
+                (mat as any).roughness = Math.min((mat as any).roughness, 0.35);
               }
               if ("metalness" in mat) {
-                (mat as any).metalness = 0.55;
+                (mat as any).metalness = Math.max((mat as any).metalness, 0.45);
               }
               if ("clearcoat" in mat) {
-                (mat as any).clearcoat = 0.15;
-                (mat as any).clearcoatRoughness = 0.1;
+                (mat as any).clearcoat = 0.5;
+                (mat as any).clearcoatRoughness = 0.05;
               }
 
-              // Collect any emissive materials to pulse with AI activity state
+              // ONLY collect materials that are actually glowing accents (non-black emissive)
               if ("emissive" in mat) {
-                collectedEmissives.push(mat);
+                const eColor = (mat as any).emissive;
+                if (eColor && (eColor.r > 0.05 || eColor.g > 0.05 || eColor.b > 0.05)) {
+                  collectedEmissives.push(mat);
+                }
               }
             });
           }
@@ -336,15 +338,13 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
     const brandColorObj = new THREE.Color(getBrandColor());
     emissiveMaterialsRef.current.forEach((mat) => {
       if ("emissive" in mat) {
-        // Lerp emissive color to state brand color (Indigo, Pink, or Emerald)
         (mat as any).emissive.lerp(brandColorObj, 4 * delta);
         
-        // Dynamic intensity pulsing
         const emissionTarget = aiState === "thinking" 
-          ? 2.5 + Math.sin(time * 14) * 0.8 
+          ? 1.8 + Math.sin(time * 14) * 0.4 
           : aiState === "typing" 
-          ? 1.8 + Math.sin(time * 22) * 0.4
-          : (0.8 + tProgress * 1.4);
+          ? 1.5 + Math.sin(time * 22) * 0.3
+          : (1.0 + tProgress * 0.4);
           
         if ("emissiveIntensity" in mat) {
           (mat as any).emissiveIntensity = emissionTarget;
@@ -353,32 +353,32 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
     });
   });
 
-  // Color mapping based on AI Activity state (Monochrome Silver/White)
+  // Ice Cyan & Electric White Glow accent
   const getBrandColor = () => {
     switch (aiState) {
-      case "thinking": return "#a1a1aa"; // Zinc 400
-      case "typing": return "#e4e4e7"; // Zinc 200
-      default: return "#ffffff"; // Pure White
+      case "thinking": return "#38bdf8"; // Ice Cyan
+      case "typing": return "#f8fafc"; // Soft Electric White
+      default: return "#38bdf8"; // Vibrant Ice Cyan Accent
     }
   };
 
   return (
     <group>
-      {/* Cinematic Studio Lights - Clean Studio High-Key & Rim Shading */}
+      {/* Studio Lights with Depth & Shading */}
       <pointLight
         ref={spotlightRef}
         position={[0, 0.5, 2.5]}
-        intensity={2.2}
+        intensity={1.8}
         distance={9}
         color={getBrandColor()}
         decay={1.6}
       />
 
-      <ambientLight intensity={0.4} />
-      {/* High-Key rim lighting for sleek monochrome finishes */}
+      <ambientLight intensity={0.3} />
+      {/* High-Key studio rim lighting for sleek dark metallic body definition */}
       <directionalLight position={[-4, 4, 3]} intensity={1.5} color="#ffffff" />
-      <directionalLight position={[4, 2, -2]} intensity={0.9} color="#e4e4e7" />
-      <directionalLight position={[0, -3, 2]} intensity={0.3} color="#71717a" />
+      <directionalLight position={[4, 2, -2]} intensity={0.8} color="#94a3b8" />
+      <directionalLight position={[0, -3, 2]} intensity={0.4} color={getBrandColor()} />
 
       <group ref={modelGroup}>
         
