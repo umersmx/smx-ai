@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/logo.png" alt="SMX AI Logo" width="100" />
+  <img src="./public/logo.svg" alt="SMX AI Logo" width="100" />
   <h1>SMX AI</h1>
   <p><strong>A Sleek, Glassmorphic Chatbot with Dynamic Multi-Provider Routing (Gemini & Groq)</strong></p>
 

@@ -451,9 +451,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           >
             {/* Sidebar Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-brand-cyan" />
-                <span className="font-display font-medium text-sm tracking-wide text-white">CHRONOLOGY</span>
+              <div className="flex items-center gap-2.5">
+                <img src="/logo.svg" alt="smx.ai" className="w-5 h-5" />
+                <span className="font-display font-medium text-sm tracking-widest text-white uppercase">smx.ai</span>
               </div>
               <button 
                 id="btn-close-sidebar"
@@ -541,9 +541,10 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               </button>
             )}
             <div>
-              <h1 className="font-display font-medium text-sm tracking-widest text-white uppercase flex items-center gap-2">
+              <h1 className="font-display font-medium text-sm tracking-widest text-white uppercase flex items-center gap-2.5">
+                <img src="/logo.svg" alt="smx.ai" className="w-4.5 h-4.5 inline-block" />
                 SMX AI // SENTIENT CORE
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-white/10 text-white border border-white/20">
                   {aiState.toUpperCase()}
                 </span>
               </h1>

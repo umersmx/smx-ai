@@ -6,15 +6,15 @@
   --font-display: "Outfit", "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-dark-bg: #11161a;
-  --color-dark-surface: #171f25;
-  --color-dark-border: rgba(236, 238, 242, 0.08);
+  --color-dark-bg: #09090b;
+  --color-dark-surface: #121215;
+  --color-dark-border: rgba(255, 255, 255, 0.08);
   
-  --color-brand-deep: #0e4a6c;
-  --color-brand-cyan: #1a82a4;
-  --color-brand-slate: #364e53;
-  --color-brand-charcoal: #11161a;
-  --color-brand-white: #eceef2;
+  --color-brand-deep: #18181b;
+  --color-brand-cyan: #ffffff;
+  --color-brand-slate: #a1a1aa;
+  --color-brand-charcoal: #09090b;
+  --color-brand-white: #fafafa;
 }
 
 /* Custom scrollbars for chat container */
@@ -27,32 +27,32 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(236, 238, 242, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(236, 238, 242, 0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Backdrop blur & frosted glass utility */
 .glass-panel {
-  background: rgba(23, 31, 37, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(236, 238, 242, 0.08);
+  background: rgba(18, 18, 21, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Ambient glow overlay */
 .ambient-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(26, 130, 164, 0.18), transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 65%);
 }
 
 .ambient-glow-thinking {
-  background: radial-gradient(circle at 50% 50%, rgba(14, 74, 108, 0.25), transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 65%);
 }
 
 .ambient-glow-typing {
-  background: radial-gradient(circle at 50% 50%, rgba(236, 238, 242, 0.15), transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 65%);
 }
 

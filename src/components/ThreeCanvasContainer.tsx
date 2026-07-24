@@ -54,9 +54,9 @@ export const ThreeCanvasContainer: React.FC<ThreeCanvasContainerProps> = ({
   };
 
   const cssBlobColors = {
-    idle: "from-brand-cyan/40 via-brand-deep/20 to-transparent shadow-[0_0_80px_rgba(26,130,164,0.3)]",
-    thinking: "from-brand-deep/50 via-brand-slate/35 to-transparent shadow-[0_0_100px_rgba(14,74,108,0.4)]",
-    typing: "from-brand-white/20 via-brand-cyan/15 to-transparent shadow-[0_0_80px_rgba(236,238,242,0.25)]",
+    idle: "from-white/10 via-zinc-800/20 to-transparent shadow-[0_0_80px_rgba(255,255,255,0.08)]",
+    thinking: "from-white/20 via-zinc-700/30 to-transparent shadow-[0_0_100px_rgba(255,255,255,0.15)]",
+    typing: "from-white/15 via-zinc-800/20 to-transparent shadow-[0_0_80px_rgba(255,255,255,0.1)]",
   };
 
   // Determine fallback container translate based on scroll / viewMode
