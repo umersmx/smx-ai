@@ -23,6 +23,7 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import { Message, ChatThread, AIState } from "../types";
 import { AetherMessageBubble } from "./AetherMessageBubble";
+import { SmxLogoMark } from "./SmxLogoMark";
 
 interface ChatInterfaceProps {
   aiState: AIState;
@@ -458,7 +459,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             {/* Sidebar Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <img src="/logo.svg" alt="smx.ai" className="w-5 h-5 logo-mark-img" />
+                <SmxLogoMark theme={theme} className="w-5 h-5" />
                 <span className="font-display font-medium text-sm tracking-widest text-white uppercase">smx.ai</span>
               </div>
               <button 
@@ -548,7 +549,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             )}
             <div>
               <h1 className="font-display font-medium text-sm tracking-widest text-white uppercase flex items-center gap-2.5">
-                <img src="/logo.svg" alt="smx.ai" className="w-4.5 h-4.5 inline-block logo-mark-img" />
+                <SmxLogoMark theme={theme} className="w-4.5 h-4.5 inline-block" />
                 SMX AI // SENTIENT CORE
                 <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-white/10 text-white border border-white/20">
                   {aiState.toUpperCase()}

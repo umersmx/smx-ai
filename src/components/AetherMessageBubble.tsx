@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Copy, Check, Terminal, Cpu, User } from "lucide-react";
+import { Copy, Check, Terminal, User, Cpu, Sparkles } from "lucide-react";
 import { Message } from "../types";
+import { SmxLogoMark } from "./SmxLogoMark";
 
 interface AetherMessageBubbleProps {
   message: Message;
@@ -143,7 +144,7 @@ export const AetherMessageBubble: React.FC<AetherMessageBubbleProps> = ({ messag
       {/* Assistant Avatar Icon */}
         {!isUser && (
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-black/80 shadow-inner p-1.5">
-            <img src="/logo.svg" alt="smx.ai" className="w-full h-full object-contain logo-mark-img" />
+            <SmxLogoMark className="w-full h-full" />
           </div>
         )}
 
