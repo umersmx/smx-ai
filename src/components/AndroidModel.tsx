@@ -220,11 +220,11 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
       targetRotY = -tProgress * 0.45; // Face slightly leftwards towards text
     } else {
       if (!hasMessages) {
-        // Centered position initially
+        // Position gracefully above the center welcome text area so it does not overlap text
         targetX = 0;
-        targetY = isMobileOrTablet ? 0.35 : 0.45;
+        targetY = isMobileOrTablet ? 0.65 : 0.72;
         targetZ = 0.5;
-        targetScale = isMobileOrTablet ? 1.0 : 1.45;
+        targetScale = isMobileOrTablet ? 0.85 : 1.15;
         targetRotY = 0; // Face forward
       } else {
         // Active Chat Mode (after one prompt): Position exactly on the right side of the centered chat container, just above the submit area

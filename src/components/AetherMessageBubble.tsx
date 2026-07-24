@@ -143,7 +143,7 @@ export const AetherMessageBubble: React.FC<AetherMessageBubbleProps> = ({ messag
       {/* Assistant Avatar Icon */}
         {!isUser && (
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-black/80 shadow-inner p-1.5">
-            <img src="/logo.svg" alt="smx.ai" className="w-full h-full object-contain" />
+            <img src="/logo.svg" alt="smx.ai" className="w-full h-full text-white" />
           </div>
         )}
 
