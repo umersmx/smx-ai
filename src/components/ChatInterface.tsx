@@ -16,7 +16,9 @@ import {
   Volume2,
   VolumeX,
   RefreshCw,
-  FileText
+  FileText,
+  Sun,
+  Moon
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Message, ChatThread, AIState } from "../types";
@@ -27,6 +29,8 @@ interface ChatInterfaceProps {
   setAiState: (state: AIState) => void;
   onBackToLanding?: () => void;
   setHasMessages?: (hasMessages: boolean) => void;
+  theme?: "dark" | "light";
+  toggleTheme?: () => void;
 }
 
 const INITIAL_THREADS: ChatThread[] = [
@@ -79,9 +83,11 @@ const getSimulatedResponse = (userPrompt: string): string[] => {
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({ 
   aiState, 
-  setAiState, 
+  setAiState,
   onBackToLanding,
-  setHasMessages 
+  setHasMessages,
+  theme = "dark",
+  toggleTheme
 }) => {
   const [threads, setThreads] = useState<ChatThread[]>(INITIAL_THREADS);
   const [activeThreadId, setActiveThreadId] = useState<string>("thread-1");
@@ -572,6 +578,15 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                 title="Return to specifications screen"
               >
                 <span>SPECIFICATIONS</span>
+              </button>
+            )}
+            {toggleTheme && (
+              <button
+                onClick={toggleTheme}
+                className="p-1.5 rounded hover:bg-white/5 text-gray-400 hover:text-white transition cursor-pointer pointer-events-auto"
+                title={theme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme"}
+              >
+                {theme === "dark" ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-800" />}
               </button>
             )}
             <button

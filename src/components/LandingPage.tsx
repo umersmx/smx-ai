@@ -16,7 +16,9 @@ import {
   Eye,
   Workflow,
   Send,
-  X
+  X,
+  Sun,
+  Moon
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Message, AIState } from "../types";
@@ -24,15 +26,19 @@ import { Message, AIState } from "../types";
 interface LandingPageProps {
   onLaunchApp: () => void;
   onScrollChange: (progress: number) => void;
-  aiState?: AIState;
-  setAiState?: (state: AIState) => void;
+  aiState: AIState;
+  setAiState: (state: AIState) => void;
+  theme?: "dark" | "light";
+  toggleTheme?: () => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ 
   onLaunchApp, 
   onScrollChange,
-  aiState = "idle",
-  setAiState
+  aiState,
+  setAiState,
+  theme = "dark",
+  toggleTheme
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -180,9 +186,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <header className="fixed top-6 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-12 pointer-events-none">
         <div className="flex items-center gap-2.5 pointer-events-auto">
           <div className="flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-            <img src="/logo.svg" alt="smx.ai logo" className="w-5 h-5 object-contain" />
+            <img src="/logo.svg" alt="smx.ai logo" className="w-5 h-5 object-contain logo-mark-img" />
             <span className="font-display font-semibold tracking-widest text-white text-base">smx.ai</span>
           </div>
+        </div>
+
+        <div className="flex items-center gap-3 pointer-events-auto">
+          {toggleTheme && (
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center p-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl shadow-lg hover:bg-white/10 text-white transition cursor-pointer"
+              title={theme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme"}
+            >
+              {theme === "dark" ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-800" />}
+            </button>
+          )}
+          <button
+            onClick={onLaunchApp}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-black/40 hover:bg-white/10 backdrop-blur-xl text-xs font-mono font-medium text-white transition cursor-pointer"
+          >
+            <span>LAUNCH APP</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       </header>
 

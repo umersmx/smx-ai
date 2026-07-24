@@ -9,13 +9,15 @@ interface ThreeCanvasContainerProps {
   viewMode: "landing" | "chat";
   scrollProgress: number;
   hasMessages: boolean;
+  theme?: "dark" | "light";
 }
 
 export const ThreeCanvasContainer: React.FC<ThreeCanvasContainerProps> = ({ 
   aiState, 
   viewMode, 
   scrollProgress,
-  hasMessages 
+  hasMessages,
+  theme = "dark"
 }) => {
   const [webglSupported, setWebglSupported] = useState<boolean>(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -130,6 +132,7 @@ export const ThreeCanvasContainer: React.FC<ThreeCanvasContainerProps> = ({
                   viewMode={viewMode} 
                   scrollProgress={scrollProgress} 
                   hasMessages={hasMessages}
+                  theme={theme}
                 />
               </Suspense>
             </Canvas>

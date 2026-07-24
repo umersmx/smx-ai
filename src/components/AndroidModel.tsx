@@ -9,9 +9,10 @@ interface AndroidModelProps {
   viewMode: "landing" | "chat";
   scrollProgress: number; // 0 (top of landing) to 1 (bottom/chat ready)
   hasMessages: boolean;
+  theme?: "dark" | "light";
 }
 
-export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, scrollProgress, hasMessages }) => {
+export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, scrollProgress, hasMessages, theme = "dark" }) => {
   const modelGroup = useRef<THREE.Group>(null);
   const headGroupRef = useRef<THREE.Group>(null);
   const collarRef = useRef<THREE.Mesh>(null);
@@ -206,11 +207,17 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
 
     // Transition values based on scroll progress
     if (viewMode === "landing") {
-      targetX = tProgress * 1.55; 
-      targetY = 0.1 - (tProgress * 0.15);
+      const rightPxFromCenter = (size.width / 2) - (isMobileOrTablet ? 70 : 110);
+      const scrolledTargetX = rightPxFromCenter * (viewport.width / size.width);
+      
+      const bottomPxFromBottom = isMobileOrTablet ? 150 : 180;
+      const scrolledTargetY = -(viewport.height / 2) + (bottomPxFromBottom * (viewport.height / size.height));
+
+      targetX = tProgress * scrolledTargetX; 
+      targetY = 0.1 + tProgress * (scrolledTargetY - 0.1);
       targetZ = tProgress * 0.1;
-      targetScale = 2.35 - (tProgress * 0.95);
-      targetRotY = -tProgress * 0.4; // Face slightly leftwards towards text
+      targetScale = 2.35 - (tProgress * 1.3);
+      targetRotY = -tProgress * 0.45; // Face slightly leftwards towards text
     } else {
       if (!hasMessages) {
         // Centered position initially
@@ -353,8 +360,15 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
     });
   });
 
-  // Ice Cyan & Electric White Glow accent
+  // Color mapping based on AI Activity state & Theme
   const getBrandColor = () => {
+    if (theme === "light") {
+      switch (aiState) {
+        case "thinking": return "#0284c7"; // Sky Blue accent in Light Mode
+        case "typing": return "#0f172a"; // Dark Slate
+        default: return "#0284c7"; // Bright Sapphire accent
+      }
+    }
     switch (aiState) {
       case "thinking": return "#38bdf8"; // Ice Cyan
       case "typing": return "#f8fafc"; // Soft Electric White
@@ -368,16 +382,16 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
       <pointLight
         ref={spotlightRef}
         position={[0, 0.5, 2.5]}
-        intensity={1.8}
+        intensity={theme === "light" ? 2.5 : 1.8}
         distance={9}
         color={getBrandColor()}
         decay={1.6}
       />
 
-      <ambientLight intensity={0.3} />
-      {/* High-Key studio rim lighting for sleek dark metallic body definition */}
-      <directionalLight position={[-4, 4, 3]} intensity={1.5} color="#ffffff" />
-      <directionalLight position={[4, 2, -2]} intensity={0.8} color="#94a3b8" />
+      <ambientLight intensity={theme === "light" ? 0.65 : 0.3} />
+      {/* High-Key studio rim lighting for sleek body definition */}
+      <directionalLight position={[-4, 4, 3]} intensity={theme === "light" ? 2.0 : 1.5} color="#ffffff" />
+      <directionalLight position={[4, 2, -2]} intensity={theme === "light" ? 1.2 : 0.8} color={theme === "light" ? "#e2e8f0" : "#94a3b8"} />
       <directionalLight position={[0, -3, 2]} intensity={0.4} color={getBrandColor()} />
 
       <group ref={modelGroup}>

@@ -10,15 +10,30 @@ export default function App() {
   const [viewMode, setViewMode] = useState<"landing" | "chat">("landing");
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [hasMessages, setHasMessages] = useState<boolean>(false);
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("smx_theme") as "dark" | "light") || "dark";
+    }
+    return "dark";
+  });
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("smx_theme", nextTheme);
+    }
+  };
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-dark-bg font-sans selection:bg-brand-cyan/30">
+    <main className={`relative w-screen h-screen overflow-hidden bg-dark-bg font-sans selection:bg-brand-cyan/30 transition-colors duration-300 ${theme === "light" ? "light-theme" : ""}`}>
       {/* 1. 3D WebGL Canvas Background Layer (Always mounted to preserve WebGL context) */}
       <ThreeCanvasContainer 
         aiState={aiState} 
         viewMode={viewMode} 
         scrollProgress={scrollProgress} 
         hasMessages={hasMessages}
+        theme={theme}
       />
 
       {/* 2. Foreground UI Layer overlays */}
@@ -38,6 +53,8 @@ export default function App() {
                 onScrollChange={setScrollProgress} 
                 aiState={aiState}
                 setAiState={setAiState}
+                theme={theme}
+                toggleTheme={toggleTheme}
               />
             </motion.div>
           ) : (
@@ -54,6 +71,8 @@ export default function App() {
                 setAiState={setAiState} 
                 onBackToLanding={() => setViewMode("landing")}
                 setHasMessages={setHasMessages}
+                theme={theme}
+                toggleTheme={toggleTheme}
               />
             </motion.div>
           )}
