@@ -120,7 +120,7 @@
 }
 
 .light-theme .logo-mark-img {
-  filter: invert(1);
+  filter: invert(1) brightness(0);
 }
 
 .light-theme .ambient-glow {

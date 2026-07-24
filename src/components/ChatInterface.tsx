@@ -458,7 +458,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             {/* Sidebar Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <img src="/logo.svg" alt="smx.ai" className="w-5 h-5 text-white" />
+                <img src="/logo.svg" alt="smx.ai" className="w-5 h-5 logo-mark-img" />
                 <span className="font-display font-medium text-sm tracking-widest text-white uppercase">smx.ai</span>
               </div>
               <button 
@@ -548,7 +548,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             )}
             <div>
               <h1 className="font-display font-medium text-sm tracking-widest text-white uppercase flex items-center gap-2.5">
-                <img src="/logo.svg" alt="smx.ai" className="w-4.5 h-4.5 inline-block text-white" />
+                <img src="/logo.svg" alt="smx.ai" className="w-4.5 h-4.5 inline-block logo-mark-img" />
                 SMX AI // SENTIENT CORE
                 <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-white/10 text-white border border-white/20">
                   {aiState.toUpperCase()}
@@ -620,17 +620,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                 transition={{ duration: 0.6 }}
                 className="space-y-6 w-full flex flex-col items-center"
               >
-                <div className={`relative inline-flex items-center justify-center p-3.5 rounded-2xl border shadow-xl ${
-                  theme === "light" ? "bg-white border-slate-200 text-slate-900" : "bg-black/50 border-white/10 text-white"
-                }`}>
-                  <img src="/logo.svg" alt="smx.ai" className={`w-8 h-8 ${theme === "light" ? "text-slate-900" : "text-white"}`} />
+                <div className="relative inline-flex items-center justify-center p-4 rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
+                  <Sparkles className="w-8 h-8 text-brand-cyan animate-pulse" />
                 </div>
                 
                 <div className="space-y-2">
-                  <h2 className={`font-display text-xl font-semibold tracking-wide ${theme === "light" ? "text-slate-900" : "text-white"}`}>
-                    Establish Cognitive Resonance
-                  </h2>
-                  <p className={`text-xs leading-relaxed font-sans max-w-md ${theme === "light" ? "text-slate-600 font-medium" : "text-gray-300"}`}>
+                  <h2 className="font-display text-lg font-medium text-white tracking-wide">Establish Cognitive Resonance</h2>
+                  <p className="text-xs text-gray-400 leading-relaxed font-sans">
                     SMX AI is a custom AI assistant powered by Gemini. Initiate communications below to monitor active 3D state mutations.
                   </p>
                 </div>

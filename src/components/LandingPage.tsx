@@ -186,7 +186,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <header className="fixed top-6 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-12 pointer-events-none">
         <div className="flex items-center gap-2.5 pointer-events-auto">
           <div className="flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-            <img src="/logo.svg" alt="smx.ai logo" className="w-5 h-5 text-white" />
+            <img src="/logo.svg" alt="smx.ai logo" className="w-5 h-5 object-contain logo-mark-img" />
             <span className="font-display font-semibold tracking-widest text-white text-base">smx.ai</span>
           </div>
         </div>
