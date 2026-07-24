@@ -534,9 +534,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
       {/* 2. MAIN CENTRAL CHAT WORKSPACE */}
       <div className="flex-1 flex flex-col h-full relative overflow-hidden z-10 pointer-events-auto">
         
-        {/* Floating Toggle Sidebar on top for Mobile/Collapsed states */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10 glass-panel relative z-10 pointer-events-auto">
-          <div className="flex items-center gap-3">
+        {/* Floating Header on top for Mobile/Collapsed states */}
+        <div className="flex items-center justify-between p-3.5 md:p-4 border-b border-white/10 glass-panel relative z-10 pointer-events-auto">
+          <div className="flex items-center gap-2.5 md:gap-3">
             {!isSidebarOpen && (
               <button
                 id="btn-open-sidebar"
@@ -548,34 +548,34 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               </button>
             )}
             <div>
-              <h1 className="font-display font-medium text-sm tracking-widest text-white uppercase flex items-center gap-2.5">
-                <SmxLogoMark theme={theme} className="w-4.5 h-4.5 inline-block" />
-                SMX AI // SENTIENT CORE
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-white/10 text-white border border-white/20">
+              <h1 className="font-display font-medium text-xs md:text-sm tracking-widest text-white uppercase flex items-center gap-2">
+                <SmxLogoMark theme={theme} className="w-4 h-4 md:w-4.5 md:h-4.5 inline-block shrink-0" />
+                <span>SMX AI</span>
+                <span className="hidden md:inline">// SENTIENT CORE</span>
+                <span className="hidden md:inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-white/10 text-white border border-white/20">
                   {aiState.toUpperCase()}
                 </span>
               </h1>
-              <p className="text-[10px] font-mono text-gray-400 mt-0.5">HIGH-DIMENSIONAL CONVERGENCE INTERFACE</p>
+              <p className="hidden md:block text-[10px] font-mono text-gray-400 mt-0.5">HIGH-DIMENSIONAL CONVERGENCE INTERFACE</p>
             </div>
           </div>
 
           {/* Quick Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             <button
               id="btn-new-chat-top"
               onClick={handleAddNewThread}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-brand-cyan/30 bg-brand-cyan/10 hover:bg-brand-cyan/20 text-xs text-brand-cyan hover:text-white transition cursor-pointer pointer-events-auto font-mono font-medium"
+              className="hidden md:flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-brand-cyan/30 bg-brand-cyan/10 hover:bg-brand-cyan/20 text-xs text-brand-cyan hover:text-white transition cursor-pointer pointer-events-auto font-mono font-medium"
               title="Start a new chat"
             >
               <Plus className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">NEW CHAT</span>
-              <span className="sm:hidden">NEW</span>
+              <span>NEW CHAT</span>
             </button>
             {onBackToLanding && (
               <button
                 id="btn-back-to-landing"
                 onClick={onBackToLanding}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 hover:bg-white/5 text-xs text-gray-300 hover:text-white transition cursor-pointer pointer-events-auto mr-1 font-mono font-medium"
+                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 hover:bg-white/5 text-xs text-gray-300 hover:text-white transition cursor-pointer pointer-events-auto mr-1 font-mono font-medium"
                 title="Return to specifications screen"
               >
                 <span>SPECIFICATIONS</span>
@@ -592,7 +592,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             )}
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="p-1.5 rounded hover:bg-white/5 text-gray-400 hover:text-white transition cursor-pointer pointer-events-auto"
+              className="hidden md:flex p-1.5 rounded hover:bg-white/5 text-gray-400 hover:text-white transition cursor-pointer pointer-events-auto"
               title={isMuted ? "Unmute Sound" : "Mute Sound"}
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
