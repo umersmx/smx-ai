@@ -458,11 +458,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           {/* CTA Box */}
           <div className="pt-8 flex flex-col items-center gap-6">
-            <h3 className="font-display font-medium text-lg text-white text-center">Ready to experience cinematic intelligence?</h3>
+            <h3 className={`font-display font-medium text-lg text-center ${theme === "light" ? "text-slate-900" : "text-white"}`}>
+              Ready to experience cinematic intelligence?
+            </h3>
             <button
               id="btn-bottom-cta"
               onClick={onLaunchApp}
-              className="flex items-center gap-2.5 px-8 py-4 rounded-xl bg-brand-cyan hover:bg-brand-cyan/90 text-xs font-mono font-medium text-white transition hover:scale-105 shadow-[0_0_40px_rgba(26,130,164,0.35)] pointer-events-auto cursor-pointer"
+              className={`flex items-center gap-2.5 px-8 py-4 rounded-xl font-mono font-semibold text-xs transition duration-200 hover:scale-105 pointer-events-auto cursor-pointer shadow-lg ${
+                theme === "light"
+                  ? "bg-slate-900 hover:bg-slate-800 text-white shadow-slate-300/60"
+                  : "bg-white hover:bg-slate-100 text-black shadow-white/10"
+              }`}
             >
               <span>DEEP CONNECT SMX.AI</span>
               <ArrowRight className="w-4 h-4" />

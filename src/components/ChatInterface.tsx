@@ -422,10 +422,10 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               id="btn-send-message"
               onClick={() => handleSendMessage()}
               disabled={!inputValue.trim() || aiState === "thinking" || aiState === "typing"}
-              className={`p-2 rounded-xl transition cursor-pointer ${
+              className={`p-2.5 rounded-xl transition cursor-pointer ${
                 inputValue.trim() && aiState === "idle"
-                  ? "bg-brand-cyan text-white hover:bg-brand-cyan/90 hover:scale-105"
-                  : "text-gray-600 bg-transparent cursor-not-allowed"
+                  ? (theme === "light" ? "bg-slate-900 text-white hover:bg-slate-800 hover:scale-105" : "bg-white text-black hover:bg-slate-100 hover:scale-105 font-semibold")
+                  : "text-gray-500 bg-transparent cursor-not-allowed"
               }`}
             >
               <Send className="w-4 h-4" />
@@ -777,7 +777,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                     localStorage.setItem("GEMINI_API_KEY", apiKey);
                     setIsSettingsOpen(false);
                   }}
-                  className="py-2 px-4 rounded-xl bg-brand-cyan hover:bg-brand-cyan/90 text-xs text-white font-medium transition cursor-pointer"
+                  className={`py-2 px-4 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                    theme === "light" ? "bg-slate-900 hover:bg-slate-800 text-white" : "bg-white hover:bg-slate-100 text-black shadow-md"
+                  }`}
                 >
                   Save Coordinates
                 </button>
