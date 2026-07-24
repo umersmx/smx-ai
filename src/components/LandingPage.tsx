@@ -492,16 +492,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   setIsChatExpanded(true);
                 }
               }}
-              className="flex items-center gap-2 px-3 py-3 md:px-4 md:py-3 rounded-full border border-brand-cyan/30 bg-black/85 backdrop-blur-xl shadow-[0_0_20px_rgba(26,130,164,0.2)] hover:border-brand-cyan/60 hover:shadow-[0_0_25px_rgba(26,130,164,0.35)] transition cursor-pointer select-none group"
+              className={`flex items-center gap-2 px-3 py-3 md:px-4 md:py-3 rounded-full border transition cursor-pointer select-none group shadow-lg ${
+                theme === "light" 
+                  ? "bg-white/90 border-slate-200 text-slate-800 hover:bg-white shadow-slate-200/50" 
+                  : "bg-black/85 border-brand-cyan/30 text-gray-300 hover:border-brand-cyan/60 shadow-[0_0_20px_rgba(26,130,164,0.2)]"
+              }`}
             >
               <div className="relative">
                 <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
-                <MessageSquare className="w-4 h-4 text-brand-cyan group-hover:text-brand-cyan/80 transition" />
+                <MessageSquare className={`w-4 h-4 transition ${theme === "light" ? "text-slate-800" : "text-brand-cyan"}`} />
               </div>
-              <span className="font-mono text-[11px] text-gray-300 tracking-wider font-semibold hidden md:inline">
+              <span className={`font-mono text-[11px] tracking-wider font-semibold hidden md:inline ${theme === "light" ? "text-slate-800" : "text-gray-300"}`}>
                 ASK SMX AI
               </span>
             </motion.button>
@@ -511,25 +515,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               initial={{ scale: 0.92, opacity: 0, y: 15 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 15 }}
-              className="w-80 h-96 border border-white/10 bg-black/95 backdrop-blur-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col hidden md:flex"
+              className={`w-80 h-96 border rounded-2xl shadow-2xl overflow-hidden flex flex-col hidden md:flex backdrop-blur-2xl ${
+                theme === "light"
+                  ? "bg-white/95 border-slate-200 text-slate-800 shadow-slate-300/40"
+                  : "bg-black/95 border-white/10 text-white"
+              }`}
             >
               {/* Header */}
-              <div className="p-3 border-b border-white/5 bg-white/5 flex items-center justify-between">
+              <div className={`p-3 border-b flex items-center justify-between ${
+                theme === "light" ? "bg-slate-100/90 border-slate-200" : "bg-white/5 border-white/5"
+              }`}>
                 <div className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-display font-medium text-xs tracking-wider text-white">SMX AI COMPACT COGNITION</span>
+                  <span className={`font-display font-medium text-xs tracking-wider ${theme === "light" ? "text-slate-900" : "text-white"}`}>SMX AI COMPACT COGNITION</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <button 
                     onClick={onLaunchApp}
-                    className="p-1 rounded text-[10px] font-mono font-medium text-brand-cyan hover:text-brand-cyan/80 hover:bg-white/5 transition"
+                    className={`p-1 rounded text-[10px] font-mono font-medium transition ${
+                      theme === "light" ? "text-slate-900 hover:bg-slate-200" : "text-brand-cyan hover:text-brand-cyan/80 hover:bg-white/5"
+                    }`}
                     title="Open Full Dashboard"
                   >
                     FULL VIEW
                   </button>
                   <button 
                     onClick={() => setIsChatExpanded(false)} 
-                    className="p-1 rounded hover:bg-white/5 text-gray-400 hover:text-white transition"
+                    className={`p-1 rounded transition ${theme === "light" ? "text-slate-500 hover:text-slate-900 hover:bg-slate-200" : "text-gray-400 hover:text-white hover:bg-white/5"}`}
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -547,12 +559,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     >
                       <div className={`p-2.5 rounded-xl text-xs font-sans leading-relaxed ${
                         isAssistant 
-                          ? "bg-white/5 text-gray-200 border border-white/5" 
-                          : "bg-brand-cyan text-white ml-auto"
+                          ? (theme === "light" ? "bg-slate-100 text-slate-800 border border-slate-200 shadow-xs" : "bg-white/5 text-gray-200 border border-white/5")
+                          : (theme === "light" ? "bg-slate-900 text-white ml-auto" : "bg-brand-cyan text-white ml-auto")
                       }`}>
                         {m.content}
                       </div>
-                      <span className="text-[9px] font-mono text-gray-500 mt-1 self-end">{m.timestamp}</span>
+                      <span className={`text-[9px] font-mono mt-1 self-end ${theme === "light" ? "text-slate-400" : "text-gray-500"}`}>{m.timestamp}</span>
                     </div>
                   );
                 })}
@@ -560,7 +572,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
 
               {/* Input Area */}
-              <div className="p-2 border-t border-white/5 bg-white/5 flex items-center gap-1.5">
+              <div className={`p-2 border-t flex items-center gap-1.5 ${
+                theme === "light" ? "bg-slate-50 border-slate-200" : "bg-white/5 border-white/5"
+              }`}>
                 <input 
                   type="text"
                   value={miniInput}
@@ -571,12 +585,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     }
                   }}
                   placeholder="Ask a quick query..."
-                  className="flex-1 min-w-0 bg-black/40 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan/50"
+                  className={`flex-1 min-w-0 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none ${
+                    theme === "light"
+                      ? "bg-white border border-slate-300 text-slate-900 placeholder-slate-400 focus:border-slate-500"
+                      : "bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-brand-cyan/50"
+                  }`}
                 />
                 <button 
                   onClick={handleSendMiniMessage}
                   disabled={!miniInput.trim()}
-                  className="p-2 rounded-lg bg-brand-cyan hover:bg-brand-cyan/90 disabled:opacity-40 text-white transition flex items-center justify-center shrink-0"
+                  className={`p-2 rounded-lg transition flex items-center justify-center shrink-0 disabled:opacity-40 ${
+                    theme === "light" ? "bg-slate-900 hover:bg-slate-800 text-white" : "bg-brand-cyan hover:bg-brand-cyan/90 text-white"
+                  }`}
                 >
                   <Send className="w-3 h-3" />
                 </button>

@@ -99,10 +99,10 @@ export const ThreeCanvasContainer: React.FC<ThreeCanvasContainerProps> = ({
         style={{ transform: "translateZ(0)" }}
       />
 
-      {/* Responsive mobile & tablet readability scrim to dim the 3D model slightly */}
-      <div className="absolute inset-0 bg-black/60 md:hidden pointer-events-none z-[3]" />
+      {/* Responsive mobile & tablet readability scrim */}
+      <div className={`absolute inset-0 md:hidden pointer-events-none z-[3] ${theme === "light" ? "bg-white/30" : "bg-black/60"}`} />
 
-      {/* Grid Overlay for subtle Technical/Cyber vibe */}
+      {/* Grid Overlay for subtle Technical vibe */}
       <div 
         className="absolute inset-0 opacity-[0.025] pointer-events-none" 
         style={{
@@ -114,8 +114,8 @@ export const ThreeCanvasContainer: React.FC<ThreeCanvasContainerProps> = ({
         }}
       />
 
-      {/* Radial shade on edges for cinematic vignette */}
-      <div className="absolute inset-0 bg-radial-[circle_at_center,transparent_40%,#050507_95%] pointer-events-none" />
+      {/* Radial shade on edges for cinematic vignette in Dark Mode only */}
+      <div className={`absolute inset-0 pointer-events-none ${theme === "light" ? "opacity-0" : "bg-radial-[circle_at_center,transparent_40%,#050507_95%]"}`} />
 
       {/* 2. Interactive Canvas Layer */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[2]">
