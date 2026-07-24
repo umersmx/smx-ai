@@ -107,16 +107,16 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
           if (child.material) {
             const materials = Array.isArray(child.material) ? child.material : [child.material];
             materials.forEach((mat) => {
-              // Boost glossiness of metallic and plastic shells
+              // Boost sleek matte ceramic & dark metallic finish
               if ("roughness" in mat) {
-                (mat as any).roughness = Math.min((mat as any).roughness, 0.2);
+                (mat as any).roughness = 0.42;
               }
               if ("metalness" in mat) {
-                (mat as any).metalness = Math.max((mat as any).metalness, 0.4);
+                (mat as any).metalness = 0.55;
               }
               if ("clearcoat" in mat) {
-                (mat as any).clearcoat = 1.0;
-                (mat as any).clearcoatRoughness = 0.02;
+                (mat as any).clearcoat = 0.15;
+                (mat as any).clearcoatRoughness = 0.1;
               }
 
               // Collect any emissive materials to pulse with AI activity state
@@ -353,32 +353,32 @@ export const AndroidModel: React.FC<AndroidModelProps> = ({ aiState, viewMode, s
     });
   });
 
-  // Color mapping based on AI Activity state
+  // Color mapping based on AI Activity state (Monochrome Silver/White)
   const getBrandColor = () => {
     switch (aiState) {
-      case "thinking": return "#0e4a6c"; // Color 1: Deep Navy/Teal
-      case "typing": return "#eceef2"; // Color 5: Frosted White
-      default: return "#1a82a4"; // Color 2: Vibrant blue/teal
+      case "thinking": return "#a1a1aa"; // Zinc 400
+      case "typing": return "#e4e4e7"; // Zinc 200
+      default: return "#ffffff"; // Pure White
     }
   };
 
   return (
     <group>
-      {/* Cinematic Studio Lights */}
+      {/* Cinematic Studio Lights - Clean Studio High-Key & Rim Shading */}
       <pointLight
         ref={spotlightRef}
         position={[0, 0.5, 2.5]}
-        intensity={3.0}
+        intensity={2.2}
         distance={9}
         color={getBrandColor()}
         decay={1.6}
       />
 
-      <ambientLight intensity={0.25} />
-      {/* High-Key rim lighting for metallic premium finishes */}
-      <directionalLight position={[-4, 4, 3]} intensity={1.8} color="#ffffff" />
-      <directionalLight position={[4, 2, -2]} intensity={0.8} color="#ffffff" />
-      <directionalLight position={[0, -3, 2]} intensity={0.5} color={getBrandColor()} />
+      <ambientLight intensity={0.4} />
+      {/* High-Key rim lighting for sleek monochrome finishes */}
+      <directionalLight position={[-4, 4, 3]} intensity={1.5} color="#ffffff" />
+      <directionalLight position={[4, 2, -2]} intensity={0.9} color="#e4e4e7" />
+      <directionalLight position={[0, -3, 2]} intensity={0.3} color="#71717a" />
 
       <group ref={modelGroup}>
         
