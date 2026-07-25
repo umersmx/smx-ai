@@ -57,7 +57,7 @@ const getSimulatedResponse = (userPrompt: string): string[] => {
       "I am **SMX AI**, a custom AI assistant developed by Umer Farooq as an AI project.",
       "\n\nYou can learn more or connect with him here:",
       "\n*   **LinkedIn:** [Umer Farooq's Profile](https://linkedin.com/in/umersmx)",
-      "\n*   **Portfolio:** [Umer Farooq's Portfolio](https://umerfarooq.dev)"
+      "\n*   **Portfolio:** [Umer Farooq's Portfolio](https://umersmx.vercel.app)"
     ];
   }
   

@@ -94,7 +94,7 @@ The project is pre-configured to build and run seamlessly as a Vercel Serverless
 * 🎓 5th-Semester Computer Science Student
 * 💼 Connect on [LinkedIn](https://linkedin.com/in/umersmx)
 * 🐙 Check out projects on [GitHub](https://github.com/umersmx)
-* 🌐 Visit portfolio at [umerfarooq.dev](https://umerfarooq.dev)
+* 🌐 Visit portfolio at [umersmx.vercel.app](https://umersmx.vercel.app)
 
 ---
 

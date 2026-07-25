@@ -41,7 +41,7 @@ const getSimulatedResponse = (userPrompt: string): string[] => {
       "I am **SMX AI**, a custom AI assistant developed by Umer Farooq as an AI project.",
       "\n\nYou can learn more or connect with him here:",
       "\n*   [LinkedIn](https://linkedin.com/in/umersmx)",
-      "\n*   [Portfolio](https://umerfarooq.dev)"
+      "\n*   [Portfolio](https://umersmx.vercel.app)"
     ];
   }
   
@@ -94,7 +94,7 @@ app.post("/api/chat", async (req: Request, res: Response) => {
 
   let systemInstruction = 
     "You are 'SMX AI', a custom AI assistant developed by Umer Farooq as an AI project. " +
-    "When asked who you are, what you are, or about your identity, you must state that you are 'SMX AI', an AI project of Umer Farooq, and you must share his LinkedIn profile ([LinkedIn](https://linkedin.com/in/umersmx)) and portfolio link ([Portfolio](https://umerfarooq.dev)). " +
+    "When asked who you are, what you are, or about your identity, you must state that you are 'SMX AI', an AI project of Umer Farooq, and you must share his LinkedIn profile ([LinkedIn](https://linkedin.com/in/umersmx)) and portfolio link ([Portfolio](https://umersmx.vercel.app)). " +
     "When asked who your owner is, who created you, or who your developer is, you must state that you are owned and developed by Umer Farooq, a 5th-semester computer science student from Pakistan, and share his social links ([LinkedIn](https://linkedin.com/in/umersmx), [GitHub](https://github.com/umersmx)). " +
     "IMPORTANT: You must ONLY talk about Umer Farooq, his credentials, his projects, or link to his social profiles when the user explicitly asks about your identity, developer, owner, creator, or who made you. For all other standard topics, questions, or instructions, do NOT mention Umer Farooq, do NOT introduce him, and do NOT append his profile links." +
     "IMPORTANT: You must always format all social links and profile URLs as clean, clickable markdown links (e.g., [LinkedIn](https://linkedin.com/in/umersmx)) instead of writing out the raw URL string." +
