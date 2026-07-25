@@ -425,7 +425,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               disabled={!inputValue.trim() || aiState === "thinking" || aiState === "typing"}
               className={`p-2.5 rounded-xl transition cursor-pointer ${
                 inputValue.trim() && aiState === "idle"
-                  ? (theme === "light" ? "bg-slate-900 text-white hover:bg-slate-800 hover:scale-105" : "bg-white text-black hover:bg-slate-100 hover:scale-105 font-semibold")
+                  ? (theme === "light" ? "bg-slate-900 text-white keep-white hover:bg-slate-800 hover:scale-105" : "bg-white text-black hover:bg-slate-100 hover:scale-105 font-semibold")
                   : "text-gray-500 bg-transparent cursor-not-allowed"
               }`}
             >
@@ -444,8 +444,21 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
 
   return (
-    <div className="absolute inset-0 flex w-full h-full max-w-7xl mx-auto overflow-hidden text-gray-200 z-20 pointer-events-auto">
-      {/* 1. ELEGANT COLLAPSIBLE SIDEBAR */}
+    <div className="absolute inset-0 flex w-full h-full overflow-hidden text-gray-200 z-20 pointer-events-auto">
+      {/* Backdrop overlay for mobile sidebar */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsSidebarOpen(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-30 md:hidden pointer-events-auto"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* 1. ELEGANT COLLAPSIBLE SIDEBAR (DESKTOP & MOBILE) */}
       <AnimatePresence initial={false}>
         {isSidebarOpen && (
           <motion.div
@@ -454,7 +467,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             animate={{ width: 280, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="hidden md:flex flex-col shrink-0 h-full border-r border-white/10 glass-panel overflow-hidden relative z-20 pointer-events-auto"
+            className="fixed md:relative inset-y-0 left-0 z-40 md:z-20 flex flex-col shrink-0 h-full border-r border-white/10 glass-panel overflow-hidden pointer-events-auto shadow-2xl md:shadow-none"
           >
             {/* Sidebar Header */}
             <div className="flex items-center justify-between p-4 border-b border-white/10">
@@ -476,7 +489,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             <div className="p-3">
               <button
                 id="btn-new-thread"
-                onClick={handleAddNewThread}
+                onClick={() => {
+                  handleAddNewThread();
+                  if (window.innerWidth < 768) {
+                    setIsSidebarOpen(false);
+                  }
+                }}
                 className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border border-white/10 hover:border-brand-cyan/50 bg-white/5 hover:bg-brand-cyan/10 text-xs text-brand-cyan/90 hover:text-white font-medium transition duration-200 cursor-pointer pointer-events-auto"
               >
                 <Plus className="w-4 h-4" />
@@ -491,7 +509,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                 return (
                   <div
                     key={thread.id}
-                    onClick={() => setActiveThreadId(thread.id)}
+                    onClick={() => {
+                      setActiveThreadId(thread.id);
+                      if (window.innerWidth < 768) {
+                        setIsSidebarOpen(false);
+                      }
+                    }}
                     className={`group flex items-center justify-between p-3 rounded-xl border transition-all duration-200 cursor-pointer ${
                       isActive 
                         ? "bg-brand-cyan/10 border-brand-cyan/30 text-white" 
@@ -781,7 +804,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                     setIsSettingsOpen(false);
                   }}
                   className={`py-2 px-4 rounded-xl text-xs font-semibold transition cursor-pointer ${
-                    theme === "light" ? "bg-slate-900 hover:bg-slate-800 text-white" : "bg-white hover:bg-slate-100 text-black shadow-md"
+                    theme === "light" ? "bg-slate-900 hover:bg-slate-800 text-white keep-white" : "bg-white hover:bg-slate-100 text-black shadow-md"
                   }`}
                 >
                   Save Coordinates

@@ -18,7 +18,8 @@ import {
   Send,
   X,
   Sun,
-  Moon
+  Moon,
+  Maximize2
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Message, AIState } from "../types";
@@ -467,7 +468,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={onLaunchApp}
               className={`flex items-center gap-2.5 px-8 py-4 rounded-xl font-mono font-semibold text-xs transition duration-200 hover:scale-105 pointer-events-auto cursor-pointer shadow-lg ${
                 theme === "light"
-                  ? "bg-slate-900 hover:bg-slate-800 text-white shadow-slate-300/60"
+                  ? "bg-slate-900 hover:bg-slate-800 text-white keep-white shadow-slate-300/60"
                   : "bg-white hover:bg-slate-100 text-black shadow-white/10"
               }`}
             >
@@ -539,12 +540,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="flex items-center gap-1.5">
                   <button 
                     onClick={onLaunchApp}
-                    className={`p-1 rounded text-[10px] font-mono font-medium transition ${
-                      theme === "light" ? "text-slate-900 hover:bg-slate-200" : "text-brand-cyan hover:text-brand-cyan/80 hover:bg-white/5"
+                    className={`p-1 rounded transition ${
+                      theme === "light" ? "text-slate-500 hover:text-slate-900 hover:bg-slate-200" : "text-gray-400 hover:text-white hover:bg-white/5"
                     }`}
-                    title="Open Full Dashboard"
+                    title="Expand to Full Dashboard"
                   >
-                    FULL VIEW
+                    <Maximize2 className="w-3.5 h-3.5" />
                   </button>
                   <button 
                     onClick={() => setIsChatExpanded(false)} 
@@ -567,7 +568,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                       <div className={`p-2.5 rounded-xl text-xs font-sans leading-relaxed ${
                         isAssistant 
                           ? (theme === "light" ? "bg-slate-100 text-slate-800 border border-slate-200 shadow-xs" : "bg-white/5 text-gray-200 border border-white/5")
-                          : (theme === "light" ? "bg-slate-900 text-white ml-auto" : "bg-brand-cyan text-white ml-auto")
+                          : (theme === "light" ? "bg-slate-900 text-white keep-white ml-auto" : "bg-white/15 text-white border border-white/10 ml-auto")
                       }`}>
                         {m.content}
                       </div>
@@ -601,11 +602,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <button 
                   onClick={handleSendMiniMessage}
                   disabled={!miniInput.trim()}
-                  className={`p-2 rounded-lg transition flex items-center justify-center shrink-0 disabled:opacity-40 ${
-                    theme === "light" ? "bg-slate-900 hover:bg-slate-800 text-white" : "bg-brand-cyan hover:bg-brand-cyan/90 text-white"
+                  className={`p-2 rounded-lg transition flex items-center justify-center shrink-0 disabled:opacity-40 disabled:cursor-not-allowed ${
+                    theme === "light" 
+                      ? "bg-slate-900 hover:bg-slate-800 text-white keep-white" 
+                      : "bg-white hover:bg-slate-200 text-slate-950"
                   }`}
+                  title="Send message"
                 >
-                  <Send className="w-3 h-3" />
+                  <Send className="w-3.5 h-3.5" />
                 </button>
               </div>
             </motion.div>

@@ -80,8 +80,13 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.light-theme .text-white {
+.light-theme .text-white:not(.keep-white) {
   color: #0f172a !important;
+}
+
+.keep-white,
+.light-theme .keep-white {
+  color: #ffffff !important;
 }
 
 .light-theme .text-gray-200,
